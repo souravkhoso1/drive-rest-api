@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+version = '1.0'
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Work Made Easy',
+                'Implementation-Version': version,
+                'Main-Class': 'MainClass'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.api-client:google-api-client:1.23.0'
+    compile 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
+    compile 'com.google.apis:google-api-services-gmail:v1-rev82-1.23.0'
+    compile 'com.google.apis:google-api-services-drive:v3-rev103-1.23.0'
+
+
+}

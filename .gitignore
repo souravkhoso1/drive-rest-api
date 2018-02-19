@@ -1,0 +1,5 @@
+.gradle
+.idea
+out/
+build/
+src/main/resouces/client_secret.json
